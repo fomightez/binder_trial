@@ -8,5 +8,5 @@ cd ~/.local/bin
 ln -s ~/optimathsat/boptimathsat optimathsat
 # Dockerfile also has copying the directory to /usr/bin; I don't know if that is necessary or not
 cd ~
-cp optimathsat /usr/bin
-cp optimathsat ~/.local/bin
+cp -r optimathsat /usr/bin
+cp -r optimathsat ~/.local/bin
