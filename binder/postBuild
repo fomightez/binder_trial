@@ -10,7 +10,8 @@ cd ~/.local/bin
 cd ~
 #cp -r optimathsat /usr/bin
 cp -r optimathsat ~/.local/bin
-
+chmod 777 ~/.local/bin/optimathsat
+chmod 777 ~/.local/bin/optimathsat/optimathsat
 
 # Move minizinc installation to here because I cannot see how to use it when using apt-get installed one
 # based on https://www.minizinc.org/doc-2.5.5/en/installation_detailed_linux.html#minizinc and  https://stackoverflow.com/q/68126984/8508004
