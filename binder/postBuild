@@ -24,10 +24,10 @@ chmod 777 ~/.local/bin/optimathsat/optimathsat
 ####cd ~/.local/bin
 ####n -s /usr/bin/mzn-fzn minizinc
 
-# Move minizinc installation to here because I cannot see how to use `minizinc` on command line when using apt-get installed one AND IT SEEMS OLD !!!
-# Based on https://www.minizinc.org/doc-2.5.5/en/installation_detailed_linux.html#minizinc and  https://stackoverflow.com/q/68126984/8508004
+# Move minizinc installation to here because I cannot see how to use `minizinc` on command line when using apt-get installed one (other than `mzn-fzn` in `/usr/bin/` that doesn't have compile option) AND IT SEEMS OLD !!!
+# Based on https://www.minizinc.org/doc-2.6.4/en/installation_detailed_linux.html#minizinc and  https://stackoverflow.com/q/68126984/8508004
 # Needs `cmake` installed via `apt.txt`.
-# Addition of  `-DGECODE_ROOT='/srv/conda/envs/notebook/include/gecode'` based on https://www.minizinc.org/doc-2.5.5/en/installation_detailed_linux.html#gecode
+# Addition of  `-DGECODE_ROOT='/srv/conda/envs/notebook/include/gecode'` based on https://www.minizinc.org/doc-2.6.4/en/installation_detailed_linux.html#gecode
 wget https://github.com/MiniZinc/libminizinc/archive/refs/tags/2.6.4.zip
 unzip 2.6.4.zip 
 cd libminizinc-2.6.4/
