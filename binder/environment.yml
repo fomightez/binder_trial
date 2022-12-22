@@ -1,13 +1,9 @@
-name: salmonDecember2022
+name: bindertrialsqlglot
 channels:
   - conda-forge
-  - bioconda
   - defaults
 dependencies:
-  - numpy
-  - matplotlib
-  - salmon
-  - nbgitpuller
+  - sqlglot
   - pip
   - pip:
     - rich
