@@ -38,5 +38,20 @@ cmake --build .
 cd ~/.local/bin
 ln -s ~/libminizinc-2.6.4/build/minizinc minizinc
 
+# Add the solver for gecode (tag org.gecode.gecode) with guidance from https://www.minizinc.org/doc-2.6.4/en/installation_detailed_linux.html#gecode:
+# Running `minizinc --solvers` in terminal includes following:
+# Search path for solver configurations:
+#  /home/jovyan/libminizinc-2.6.4/share/minizinc/solvers
+#  /usr/local/share/minizinc/solvers
+#  /usr/share/minizinc/solvers
+cd ~/libminizinc-2.6.4/share/minizinc
+mkdir -p solvers
+cd solvers
+cp ~/binder/gecode.msc .
 
 
+
+# Update `idr_query.py` to point at the correct locations for `path_to_minizinc` and `path_to_optimathsat`
+# inside launched sessions.
+sed -i 's/\/usr\/bin\/minizinc/\/home\/jovyan\/libminizinc-2.6.4\/build\/minizinc/g' ./work/idr_query.py
+sed -i 's/\/usr\/bin\/optimathsat/\/home\/jovyan\/.local\/bin\/optimathsat\/optimathsa/g' ./work/idr_query.py
