@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+# Add optimathsat to the path
+mkdir -p ~/.local/bin
+# to create alias for optimathsat ("~/.local/bin" is in the PATH)
+cd ~/.local/bin
+ln -s ~/optimathsat/boptimathsat optimathsat
+# Dockerfile also has copying the directory to /usr/bin; I don't know if that is necessary or not
+cd ~
+cp optimathsat /usr/bin
+cp optimathsat ~/.local/bin

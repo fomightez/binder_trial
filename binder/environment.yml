@@ -1,0 +1,13 @@
+name: salmonDecember2022
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - numpy
+  - matplotlib
+  - salmon
+  - nbgitpuller
+  - pip
+  - pip:
+    - rich

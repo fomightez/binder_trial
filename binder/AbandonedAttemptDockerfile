@@ -1,0 +1,52 @@
+# How to build image https://docs.docker.com/engine/reference/commandline/build/  
+# > cd into this folder
+# > docker build -t <image_name> .
+# (no tag no work)
+# How to run it https://docs.docker.com/engine/reference/commandline/run/
+# > docker run -p 8888:8888 <image_name>
+# Or actually more convenient from the docker UI, but remember to map 8888 to 8888
+# the link to execute the notebook is in the console as this image boots up. It will look like this with a token:
+# http://127.0.0.1:8888/lab?token=4f682b43edfeb4f0139ade0eb1b7190e0bbb030c6056601b
+
+# https://github.com/jupyter/docker-stacks/tree/main/minimal-notebook
+FROM jupyter/minimal-notebook:4f960fbd8e4c
+
+# Copy repo into ${HOME}, make user own $HOME
+USER root
+COPY . ${HOME}
+RUN chown -R ${NB_USER} ${HOME}
+USER ${NB_USER}
+
+# Temporary elevation
+USER root
+
+# Install MiniZinc https://www.minizinc.org/
+RUN apt-get update
+RUN apt-get install --yes minizinc
+
+# Install Python 3 packages
+RUN mamba install --quiet --yes sqlglot
+
+# Install Optimathsat https://optimathsat.disi.unitn.it/
+COPY optimathsat /usr/bin
+
+# Install ACT_Conveyance_Duty.ipynb
+COPY work/query_idr_magic.py /home/${NB_USER}/work
+COPY work/idr_query.py /home/${NB_USER}/work
+COPY work/act_conveyance_duty.mzn /home/${NB_USER}/work
+COPY ACT_Conveyance_Duty.ipynb /home/${NB_USER}
+
+# Return to User level
+USER ${NB_UID}
+
+ARG NB_USER=jovyan
+ARG NB_UID=1000
+ENV USER ${NB_USER}
+ENV NB_UID ${NB_UID}
+ENV HOME /home/${NB_USER}
+
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+
