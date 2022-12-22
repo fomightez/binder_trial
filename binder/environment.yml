@@ -1,9 +1,11 @@
 name: bindertrialsqlglot
 channels:
   - conda-forge
+  - bioconda
   - defaults
 dependencies:
   - sqlglot
+  - gecode
   - pip
   - pip:
     - rich
