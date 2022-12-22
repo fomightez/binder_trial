@@ -22,4 +22,4 @@ cd build/
 cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build .
 cd ~/.local/bin
-ln -s ~/libminizinc-2.6.4/bin/minizinc minizinc
+ln -s ~/libminizinc-2.6.4/build/minizinc minizinc
